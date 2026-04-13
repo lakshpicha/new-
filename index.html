@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AirCanvas Pro | Hand & Finger Drawing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" defer></script>
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <main class="layout">
+      <section class="panel hero">
+        <h1>🖐️ AirCanvas Pro</h1>
+        <p>
+          Real-time air drawing using your <strong>laptop camera</strong>, your <strong>index finger</strong>, and pinch gestures.
+        </p>
+        <ul class="tips">
+          <li><kbd>Pinch</kbd> thumb + index to draw.</li>
+          <li><kbd>Open hand</kbd> to move without drawing.</li>
+          <li>Choose color and brush size for better strokes.</li>
+        </ul>
+        <div class="actions-row">
+          <button id="startCameraBtn" class="btn primary" type="button">Start Camera</button>
+          <button id="stopCameraBtn" class="btn" type="button">Stop Camera</button>
+          <button id="clearBtn" class="btn" type="button">Clear Canvas</button>
+          <button id="saveBtn" class="btn" type="button">Save PNG</button>
+        </div>
+      </section>
+
+      <section class="panel controls">
+        <h2>Brush Controls</h2>
+        <label for="colorPicker">Color</label>
+        <input id="colorPicker" type="color" value="#00d4ff" />
+
+        <label for="sizeSlider">Size: <span id="sizeValue">6</span>px</label>
+        <input id="sizeSlider" type="range" min="2" max="24" value="6" />
+
+        <div class="palette" id="palette"></div>
+
+        <h3>Status</h3>
+        <p id="status" class="status">Camera is off.</p>
+        <div class="metrics">
+          <p>Tracking: <span id="trackingState">Idle</span></p>
+          <p>FPS: <span id="fpsValue">0</span></p>
+        </div>
+      </section>
+
+      <section class="panel canvas-stage">
+        <div class="video-wrap">
+          <video id="inputVideo" autoplay playsinline muted></video>
+          <canvas id="overlayCanvas" width="960" height="540"></canvas>
+          <canvas id="drawCanvas" width="960" height="540"></canvas>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
